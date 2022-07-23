@@ -1,0 +1,127 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+.style-coverImage {
+    top: 80px;
+    left: 98px;
+    width: 770px;
+    height: 151px;
+    /* UI Properties */
+/*    background: transparent url('img/cover page photo.png') 0% 0% no-repeat padding-box;
+*/    opacity: 1;
+}
+
+.style-profileImage {
+    top: 210px;
+    left: 119px;
+    width: 80px;
+    height: 120px;
+    /* UI Properties */
+    background: transparent url('img/profile picture.png') 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px 4px 0px 0px;
+    opacity: 1;
+}
+.name-style {
+    top: 243px;
+    left: 232px;
+    width: 134px;
+    height: 21px;
+    /* UI Properties */
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-16)/var(--unnamed-line-spacing-20) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal bold 16px/20px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+
+.edit-style {
+    top: 247px;
+    left: 833px;
+    width: 13px;
+    height: 15px;
+    /* UI Properties */
+    background: transparent url('img/icon- edit.png') 0% 0% no-repeat padding-box;
+    border: 1px solid #00000000;
+    opacity: 1;
+}
+
+.about-style {
+    top: 380px;
+    left: 98px;
+    width: 770px;
+    height: 150px;
+    /* UI Properties */
+    opacity: 1;
+}

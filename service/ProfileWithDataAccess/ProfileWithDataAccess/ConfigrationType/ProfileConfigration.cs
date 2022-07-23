@@ -12,7 +12,10 @@ namespace ProfileWithCore.ConfigrationType
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Profile> builder)
         {
-            throw new NotImplementedException();
+            
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+            //builder.HasMany<Profile>(e => e.ProfileExprience)
+            //    .WithOne().HasForeignKey(e=>e.ProfileExprience);
         }
     }
 }

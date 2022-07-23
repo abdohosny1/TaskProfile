@@ -15,6 +15,24 @@ namespace ProfileWithDataAccess
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Profile>()
+            //     .HasMany(b => b.ProfileExprience)
+            //     .WithOne();
+
+            //modelBuilder.Entity<ProfileExprience>()
+            //    .HasOne(b=>b.Profile)
+            //    .WithMany(b=>b.ProfileExprience);
+
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Profile> profiles { get; set; }
+        public DbSet<ProfileExprience> ProfileExpriences { get; set; }
+        public DbSet<Cities> Cities { get; set; }
+        public DbSet<Titiles> Titiles { get; set; }
+        public DbSet<companies> Companies { get; set; }
     }
 }
