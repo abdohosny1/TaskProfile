@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProfileApi.dto;
 using ProfileWithCore;
 using ProfileWithCore.Model;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -19,39 +20,104 @@ namespace ProfileApi.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet(Name = "Get ProfileExpriences")]
+        [HttpGet()]
         [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ProfileExprience>> GetAllExper()
         {
 
-           var res= await _unitOfWork.ProfileExpriences.GetAll();
+            var res = await _unitOfWork.ProfileExpriences.GetAll();
+            var items = res.Select(i => new ProfileExperinceDto
+            {
+                Id=i.Id,
+                Title=i.Title,
+                Branch=i.Branch,
+                CompanyName=i.CompanyName,
+                Description=i.Description,
+                EndDate=i.EndDate,
+                ProfiletId=i.ProfiletId,
+                StartDate=i.StartDate
+            });
+            return Ok(items);
+        }
+
+        [HttpPost()]
+        [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
+
+        public async Task<ActionResult<ProfileExperinceDto>> AddExper([FromForm] ProfileExperinceDto exprience)
+        {
+         //   if (ModelState.IsValid) return BadRequest();
+            var profileExprience = new ProfileExprience()
+            {
+                Branch = exprience.Branch,
+                CompanyName = exprience.CompanyName,
+                Description = exprience.Description,
+                EndDate = exprience.EndDate,
+                StartDate = exprience.StartDate,
+                Title = exprience.Title,
+                ProfiletId = exprience.ProfiletId
+
+            };
+            var res =await _unitOfWork.ProfileExpriences.Add(profileExprience);
             return Ok(res);
         }
 
-        //[HttpPost(Name = "Add ProfileExprience")]
-        //[ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
 
-        //public  async Task<ActionResult<ProfileExprience>> AddExper([FromForm] ProfileExprience exprience)
-        //{
-        //    if(ModelState.IsValid) return BadRequest();
-        //    //var profileExprience = new ProfileExprience()
-        //    //{
-        //    //    Branch = exprience.Branch,
-        //    //    CompanyName = exprience.CompanyName,
-        //    //    Description = exprience.Description,
-        //    //    EndDate = exprience.EndDate,
-        //    //    StartDate = exprience.StartDate,
-        //    //    Id = exprience.Id,
-        //    //    Titiles.
+        public async Task<ActionResult> DeleteProfile(int id)
+        {
+            if (id == null) return NotFound();
+            var item = await _unitOfWork.ProfileExpriences.GetById(id);
 
+            if (item == null)
+            {
+                return NotFound($"Not found Id ={id}");
+            }
+            else
+            {
+                await _unitOfWork.ProfileExpriences.DeleteAsync(id);
+                return Ok();
+            }
+        }
 
+        //  [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> update(int id, [FromBody] ProfileExperinceDto experinceDto)
+        {
+            if (id == null) return NotFound();
+            var item = await _unitOfWork.ProfileExpriences.GetById(id);
 
+            if (item == null)
+            {
+                return NotFound($"Not found Id ={id}");
+            }
+            else
+            {
+                item.ProfiletId = experinceDto.ProfiletId;
+                item.StartDate = experinceDto.StartDate;
+                item.EndDate = experinceDto.EndDate;
+                item.CompanyName = experinceDto.CompanyName;
+                item.Branch = experinceDto.Branch;
+                item.Title = experinceDto.Title;
+                item.Description = experinceDto.Description;
+                await _unitOfWork.ProfileExpriences.update(item);
+                return Ok(item);
 
-        //    //};
-        //    var res =  _unitOfWork.ProfileExpriences.Add(exprience);
-        //    return Ok(res);
-        //}
+            }
+
+        }
 
 
     }
-}
+
+
+
+
+        }
+
+
+
+
+
+
+

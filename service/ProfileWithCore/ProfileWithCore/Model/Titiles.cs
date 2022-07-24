@@ -12,7 +12,7 @@ namespace ProfileWithCore.Model
         public string Name { get; set; }
 
 
-        public int ProfileExprienceId { get; set; }
-        public ProfileExprience ProfileExprience { get; set; }
+        //public int ProfileExprienceId { get; set; }
+        //public ProfileExprience ProfileExprience { get; set; }
     }
 }

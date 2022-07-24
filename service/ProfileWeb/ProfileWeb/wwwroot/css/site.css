@@ -125,3 +125,97 @@ body {
     /* UI Properties */
     opacity: 1;
 }
+.titles-style {
+   
+    /* UI Properties */
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal normal 14px/19px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+
+.background-style {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-16)/var(--unnamed-line-spacing-21) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal normal 16px/21px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+.workexpericence-style {
+    top: 886px;
+    left: 118px;
+    width: 670px;
+    height: 20px;
+    /* UI Properties */
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-63bacf);
+    text-align: left;
+    font: normal normal bold 14px/19px Segoe UI;
+    letter-spacing: 0px;
+    color: #63BACF;
+    opacity: 1;
+}
+.edit-work-style{
+    top: 888px;
+    left: 237px;
+    width: 13px;
+    height: 15px;
+    /* UI Properties */
+    border: 1px solid #00000000;
+    opacity: 1;
+}
+.item-expercience-style {
+    top: 915px;
+    left: 120px;
+    width: 727px;
+    height: 125px;
+    /* UI Properties */
+    opacity: 1;
+}
+.titel-exper-style {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal bold 14px/19px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+.company-exper-style {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-12)/var(--unnamed-line-spacing-16) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal normal 12px/16px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+.des-exper-style {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-segoe-ui);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-001524);
+    text-align: left;
+    font: normal normal normal 14px/19px Segoe UI;
+    letter-spacing: 0px;
+    color: #001524;
+    opacity: 1;
+}
+.imge-exper-style {
+    top: 915px;
+    left: 120px;
+    width: 40px;
+    height: 40px;
+    /* UI Properties */
+    background: transparent url('img/icon-workexperience.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}

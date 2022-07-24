@@ -1,15 +1,164 @@
 ﻿
-
-<div>
-    <img src='~/img/cover page photo.png' class="style-coverImage" />
+<div ng-app="myApp" ng-controller="myCtrl">
     <div>
-        <img  src='~/img/profile picture.png' class="style-profileImage"/>
+        <img src='~/img/cover page photo.png' class="style-coverImage" />
+        <div>
+            <img src='~/img/profile picture.png' class="style-profileImage" />
 
-        <span class="name-style"> Abdelaliem Hosny</span>
-        <img  src='~/img/icon- edit.png' class="edit-style"/>
+            <span class="name-style"> Abdelaliem Hosny</span>
+
+            <img src='~/img/icon- edit.png' class="edit-style" />
+            <span class="titles-style">{{myWelcome[0].title}}</span>
+
+        </div>
+
+        <div class="about-style">
+
+        </div>
     </div>
 
-    <div class="about-style">
+    <div>
+        <h1 class="background-style">Background</h1>
+        <div class="row" style="max-width: 700px;">
+            <h1 class="workexpericence-style">Work Expercience</h1>
+            <button class="edit-work-style"
+                    data-toggle="modal" data-target="#myModal">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+
+        <div ng-repeat="item in myWelcome">
+
+
+
+            <div class="card mb-3 " style="max-width: 700px;">
+                <div class="row g-0">
+                    <div class="col-md-1 p-3">
+                        <img src="~/img/icon-workexperience.png" />
+
+                    </div>
+                    <div class="col-md-11">
+                        <div class="card-body">
+                            <div class="row d-flex ">
+                                <span class="p-2 flex-grow-1 card-title titel-exper-style">{{item.title}}</span>
+                                <div class="p-2 ">
+                                    <button class="edit-work-style"> <i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="edit-work-style"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                            <p class="card-text company-exper-style">{{item.companyName}}</p>
+                            <p class=" card-text des-exper-style"> {{item.description}} </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  
+
+     
+
+
+
+
+<div id="myModal" class="modal fade" role="dialog" ng-controller="formController">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">HProfileWorkExperience</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <form ng-submit="submitExoerForm()">
+                    <div class="mb-3">
+                        <label for="txt_Title" class="form-label">Title</label>
+                        <input type="text" ng-model="Title" class="form-control"
+                               id="txt_Title" placeholder="EX.Software Devloper"
+                               aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_Employer" ng-model="Employer" class="form-label">Employer</label>
+                        <input type="text" placeholder="Ex.Hits" class="form-control" id="txt_Employer">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">I am currently working in this role</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="d-flex">
+                            <label for="disabledSelect" class="p-2 flex-fill form-label">Start  Date</label>
+                            <label for="disabledSelect" class="p-2 flex-fill form-label">End  Date</label>
+                        </div>
+                        <div class="d-flex justify-content-between mx-1 px-1">
+                            <select id="disabledSelect" ng-model="StartMonth" class="form-control">
+                                <option>Month</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                            </select>
+
+                            <select id="disabledSelect" ng-model="StartYear" class="form-control">
+                                <option>Year</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                            </select>
+                            <select id="disabledSelect" ng-model="EndYear" class="form-control">
+                                <option>Month</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                            </select>
+
+                            <select id="disabledSelect" ng-model="EndYear" class="form-control">
+                                <option>Year</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                                <option>Disabled select</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_branch" class="form-label">City/Branch</label>
+                        <input type="text" ng-model="Branch" placeholder="Ex.Cairo" class="form-control" id="txt_branch">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_des" class="form-label">My Jop Description</label>
+                        <textarea rows="4" ng-model="Descripation" cols="50" type="text" class="form-control" id="txt_des">
+                         </textarea>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <label class="form-check-label" for="exampleCheck2">Skill Bank HelpFull</label>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+
+                        <button type="button" ng-click="reset()" class="btn btn-primary" data-dismiss="modal">Apply Chang</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
 
     </div>
 </div>
+
+
+</div>
+
+
+
+
+
+
+

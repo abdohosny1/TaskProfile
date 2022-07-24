@@ -19,6 +19,8 @@ namespace ProfileApi
 {
     public class Startup
     {
+        string text = "";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,7 +39,19 @@ namespace ProfileApi
 
            // services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddScoped<IUnitOfWork,UnitOfWork>();
-            
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(text,
+                builder =>
+                {
+                    builder.AllowAnyOrigin();
+        //  builder.WithOrigins("url");
+        builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProfileApi", Version = "v1" });
@@ -59,6 +73,7 @@ namespace ProfileApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(text);
 
             app.UseEndpoints(endpoints =>
             {

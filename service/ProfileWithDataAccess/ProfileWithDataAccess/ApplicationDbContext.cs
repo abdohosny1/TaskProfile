@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProfileWithCore.ConfigrationType;
 using ProfileWithCore.Model;
+using ProfileWithDataAccess.ConfigrationType;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,12 @@ namespace ProfileWithDataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            new ProfileExperienceConfigration().Configure(modelBuilder.Entity<ProfileExprience>());
+            new TitilesConfiguration().Configure(modelBuilder.Entity<Titiles>());
+            new companiesCondiguration().Configure(modelBuilder.Entity<companies>());
+            new CitiesConfiguration().Configure(modelBuilder.Entity<Cities>());
+            new ProfileConfigration().Configure(modelBuilder.Entity<Profile>());
+
             //modelBuilder.Entity<Profile>()
             //     .HasMany(b => b.ProfileExprience)
             //     .WithOne();

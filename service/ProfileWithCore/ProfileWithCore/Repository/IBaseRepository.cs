@@ -12,11 +12,13 @@ namespace ProfileWithCore.Repository
         Task<IEnumerable<T>> GetAll();
         Task<IEnumerable<T>> GellAll(params Expression<Func<T, object>>[] includeProperty);
 
-        T Add(T entity);
+        Task<T> Add(T entity);
+        Task AddAsync(T entity);
+        Task<T> update(T entity);
+        Task updateAsync(int id, T entity);
 
-        T Update(T entity);
-        void Delete(T entity);
-
+        Task DeleteAsync(int id);
         Task<T> GetById(int id);
+       
     }
 }

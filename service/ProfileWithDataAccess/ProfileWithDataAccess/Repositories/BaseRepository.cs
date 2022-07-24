@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ProfileWithCore.Model;
 using ProfileWithCore.Repository;
 using System;
@@ -32,31 +33,60 @@ namespace ProfileWithDataAccess.Repositories
             return await quary.ToListAsync();
         }
 
-        public  T Add(T entity)
+        public async Task<T> Add(T entity)
         {
-             _context.Set<T>().Add(entity);
-            _context.SaveChanges();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
             return entity;
 
         }
 
-        public void Delete(T entity)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-      
-
-        public Task<T> GetById(int id)
+        public async Task<T> Delete(T entity)
         {
-            throw new NotImplementedException();
+           _context.Set<T>().Remove(entity);
+            _context.SaveChanges();
+            return entity;
+        }
+     
+
+        public async Task DeleteAsync(int id)
+        {
+            var data = await _context.Set<T>().FindAsync(id);
+
+            EntityEntry entityEntry = _context.Entry<T>(data);
+            entityEntry.State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
 
-        public T Update(T entity)
+
+
+        public async Task<T> GetById(int id)
         {
-            throw new NotImplementedException();
+           return await _context.Set<T>().FindAsync(id);
         }
 
      
+
+        public async Task<T> update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task updateAsync(int id, T entity)
+        {
+            EntityEntry entityEntry = _context.Entry<T>(entity);
+            entityEntry.State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+ 
     }
 }

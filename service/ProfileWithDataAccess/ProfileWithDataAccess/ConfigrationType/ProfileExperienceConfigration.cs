@@ -15,8 +15,16 @@ namespace ProfileWithDataAccess.ConfigrationType
 
             //builder.HasMany<Profile>(e => e.ProfileExprience)
             //    .WithOne().HasForeignKey(e=>e.ProfileExprience);
-            builder.HasOne(e => e.Profile).WithMany()
-             .HasForeignKey(e => e.ProfiletId);
+
+            //builder.HasOne(e => e.Profile).WithMany()
+            // .HasForeignKey(e => e.ProfiletId);
+
+            builder.Property(e => e.Branch).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.CompanyName).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.Description).IsRequired().HasMaxLength(200);
+        
+            builder.Property(e => e.Title).IsRequired().HasMaxLength(100);
+
         }
     }
 }
