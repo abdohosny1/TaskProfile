@@ -55,7 +55,7 @@
             </div>
         </div>
 
-    </div>
+</div>
 
   
 
@@ -64,7 +64,7 @@
 
 
 
-<div id="myModal" class="modal fade" role="dialog" ng-controller="formController">
+<div id="myModal" class="modal fade" role="dialog" >
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -74,20 +74,22 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
-            <div class="modal-body">
-                <form ng-submit="submitExoerForm()">
+            <div class="modal-body" ng-controller="experController">
+                <form ng-submit="submitExpercincerForm()">
                     <div class="mb-3">
                         <label for="txt_Title" class="form-label">Title</label>
-                        <input type="text" ng-model="Title" class="form-control"
-                               id="txt_Title" placeholder="EX.Software Devloper"
-                               aria-describedby="emailHelp">
+                        <input type="text" ng-model="exp.Title" class="form-control"
+                               id="txt_Title" name="Title" placeholder="EX.Software Devloper"
+                                required>
                     </div>
                     <div class="mb-3">
-                        <label for="txt_Employer" ng-model="Employer" class="form-label">Employer</label>
-                        <input type="text" placeholder="Ex.Hits" class="form-control" id="txt_Employer">
+                        <label for="txt_Employer"  class="form-label">Employer</label>
+                        <input type="text" ng-model="exp.CompanyName" name="CompanyName"
+                        placeholder="Ex.Hits" class="form-control" id="txt_Employer">
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <input type="checkbox" name="Current" ng-model="exp.Current"
+                        class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">I am currently working in this role</label>
                     </div>
 
@@ -96,7 +98,8 @@
                             <label for="disabledSelect" class="p-2 flex-fill form-label">Start  Date</label>
                             <label for="disabledSelect" class="p-2 flex-fill form-label">End  Date</label>
                         </div>
-                        <div class="d-flex justify-content-between mx-1 px-1">
+                     </div>
+                    @*    <div class="d-flex justify-content-between mx-1 px-1">
                             <select id="disabledSelect" ng-model="StartMonth" class="form-control">
                                 <option>Month</option>
                                 <option>Disabled select</option>
@@ -126,25 +129,28 @@
 
                         </div>
 
-                    </div>
+                    </div>*@
                     <div class="mb-3">
                         <label for="txt_branch" class="form-label">City/Branch</label>
-                        <input type="text" ng-model="Branch" placeholder="Ex.Cairo" class="form-control" id="txt_branch">
+                        <input type="text" ng-model="exp.Branch" name="Branch"
+                        placeholder="Ex.Cairo" class="form-control" id="txt_branch">
                     </div>
                     <div class="mb-3">
                         <label for="txt_des" class="form-label">My Jop Description</label>
-                        <textarea rows="4" ng-model="Descripation" cols="50" type="text" class="form-control" id="txt_des">
+                        <textarea rows="4" ng-model="exp.Description"  name="Description"
+                        cols="50" type="text" class="form-control" id="txt_des">
                          </textarea>
                     </div>
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                        <input type="checkbox" ng-model="exp.Skill" name="Skill"
+                        class="form-check-input" id="exampleCheck2">
                         <label class="form-check-label" for="exampleCheck2">Skill Bank HelpFull</label>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Apply Chang" class="btn btn-primary" />
 
-                        <button type="button" ng-click="reset()" class="btn btn-primary" data-dismiss="modal">Apply Chang</button>
-                    </div>
+@*                        <button type="button" ng-click="reset()" class="btn btn-primary" data-dismiss="modal" >Apply Chang</button>
+*@                    </div>
                 </form>
             </div>
             
@@ -154,7 +160,6 @@
 </div>
 
 
-</div>
 
 
 
@@ -162,3 +167,4 @@
 
 
 
+    </div>

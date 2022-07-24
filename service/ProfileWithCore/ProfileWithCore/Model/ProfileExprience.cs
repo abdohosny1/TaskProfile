@@ -20,10 +20,13 @@ namespace ProfileWithCore.Model
         public string StartDate { get; set; }
         public string EndDate { get; set; }
 
-       // [ForeignKey("Department")]
+        public bool Current { get; set; }
+        public bool Skill { get; set; }
 
-       //navigation prop
-        public int ProfiletId { get; set; }
+        // [ForeignKey("Department")]
+
+        //navigation prop
+        public int ProfileId { get; set; }
 
         public Profile Profile { get; set; }
 

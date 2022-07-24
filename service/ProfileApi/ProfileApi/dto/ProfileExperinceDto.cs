@@ -3,7 +3,6 @@
     public class ProfileExperinceDto
     {
 
-        public int Id { get; set; }
         public string CompanyName { get; set; }
 
         public string Branch { get; set; }
@@ -14,8 +13,11 @@
         public string StartDate { get; set; }
         public string EndDate { get; set; }
 
-       
-        public int ProfiletId { get; set; }
+        public bool Current { get; set; }
+        public bool Skill { get; set; }
+
+
+        public int ProfileId { get; set; }
 
 
 

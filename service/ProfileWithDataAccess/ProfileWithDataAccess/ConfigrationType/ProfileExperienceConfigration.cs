@@ -18,12 +18,17 @@ namespace ProfileWithDataAccess.ConfigrationType
 
             //builder.HasOne(e => e.Profile).WithMany()
             // .HasForeignKey(e => e.ProfiletId);
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+
 
             builder.Property(e => e.Branch).IsRequired().HasMaxLength(100);
             builder.Property(e => e.CompanyName).IsRequired().HasMaxLength(100);
             builder.Property(e => e.Description).IsRequired().HasMaxLength(200);
         
             builder.Property(e => e.Title).IsRequired().HasMaxLength(100);
+            builder.Property(e => e.Current).HasDefaultValue(false);
+            builder.Property(e => e.Skill).HasDefaultValue(false);
+            
 
         }
     }

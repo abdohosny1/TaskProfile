@@ -3,31 +3,20 @@
 
 // Write your JavaScript code.
 
-$(document).ready(function () {
-    //$('#progress').show();
 
-    //getAlldata();
-    getAllProfileExperience();
-});
 
-function getAllProfileExperience() {
+var app = angular.module('myApp', []);
 
-    $.ajax({
-        url: 'https://localhost:44391/api/ProfileExper',
-        method: "Get",
-        success: function (data) {
-            console.log(data);
-            $('#showcount').html(data);
-        },
-        errot: function () {
-            alert("Some thing with wrong");
-        }
 
-    });
-}
+app.controller('myCtrl', function ($scope, $http) {
 
-var app = angular.module('myApp', ['ui.bootstrap']);
-app.controller('myCtrl', function ($scope, $http, $uibModal, ModalEditor) {
+
+    //characterFactory.getAll()
+    //    .then(function (data) {
+    //        $scope.mess = "hello";
+    //        $scope.myWelcome = data.data;
+
+    //    });
     $http({
         method: "GET",
         url: "https://localhost:44391/api/ProfileExper"
@@ -40,53 +29,32 @@ app.controller('myCtrl', function ($scope, $http, $uibModal, ModalEditor) {
 
 });
 
-studentApp.controller("formController", function ($scope, $http) {
+app.controller("experController", function ($scope, $http) {
 
-    //3. attach originalStudent model object
-    $scope.originalStudent = {
-        firstName: 'James',
-        lastName: 'Bond',
-        DoB: new Date('01/31/1980'),
-        gender: 'male',
-        trainingType: 'online',
-        maths: false,
-        physics: true,
-        chemistry: true
+ 
+    $scope.exp = {
+        profileId:1,
     };
 
-    //4. copy originalStudent to student. student will be bind to a form 
-    $scope.student = angular.copy($scope.originalStudent);
 
     //5. create submitStudentForm() function. This will be called when user submits the form
-    $scope.submitStudnetForm = function () {
+    $scope.submitExpercincerForm = function () {
+        console.log($scope.student);
+        console.log($scope.exp);
 
-        var onSuccess = function (data, status, headers, config) {
-            alert('Experince saved successfully.');
-        };
+        $http({
+            method: "POST",
+            data: $scope.exp,
+            url: "https://localhost:44391/api/ProfileExper"
+        }).then(function mySuccess(response) {
 
-        var onError = function (data, status, headers, config) {
-            alert('Error occured.');
-        }
+       
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
 
-        $http.post('https://localhost:44391/api/ProfileExper', { student: $scope.student })
-            .success(onSuccess)
-            .error(onError);
 
-    };
-
-    //6. create resetForm() function. This will be called on Reset button click.  
-    $scope.resetForm = function () {
-        $scope.student = angular.copy($scope.OriginalStudent);
     };
 });
-app.controller('myApp', function mainController($scope, $uibModal, ModalEditor) {
 
-    var vm = this;
 
-    $scope.openModal = function () {
-
-        console.log("button clicked")
-        ModalEditor.openModal()
-
-    }
-})

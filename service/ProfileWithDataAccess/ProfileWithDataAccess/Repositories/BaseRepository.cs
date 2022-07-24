@@ -87,6 +87,9 @@ namespace ProfileWithDataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
- 
+        public Task<IEnumerable<T>> GetByUserID(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

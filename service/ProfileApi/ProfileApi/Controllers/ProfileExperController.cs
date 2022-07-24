@@ -28,14 +28,14 @@ namespace ProfileApi.Controllers
             var res = await _unitOfWork.ProfileExpriences.GetAll();
             var items = res.Select(i => new ProfileExperinceDto
             {
-                Id=i.Id,
                 Title=i.Title,
                 Branch=i.Branch,
                 CompanyName=i.CompanyName,
                 Description=i.Description,
                 EndDate=i.EndDate,
-                ProfiletId=i.ProfiletId,
+                ProfileId = i.ProfileId,
                 StartDate=i.StartDate
+               
             });
             return Ok(items);
         }
@@ -43,7 +43,7 @@ namespace ProfileApi.Controllers
         [HttpPost()]
         [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
 
-        public async Task<ActionResult<ProfileExperinceDto>> AddExper([FromForm] ProfileExperinceDto exprience)
+        public async Task<ActionResult<ProfileExperinceDto>> AddExper( ProfileExperinceDto exprience)
         {
          //   if (ModelState.IsValid) return BadRequest();
             var profileExprience = new ProfileExprience()
@@ -54,8 +54,10 @@ namespace ProfileApi.Controllers
                 EndDate = exprience.EndDate,
                 StartDate = exprience.StartDate,
                 Title = exprience.Title,
-                ProfiletId = exprience.ProfiletId
-
+                ProfileId = exprience.ProfileId,
+                Current=exprience.Current,
+                Skill=exprience.Skill,
+                
             };
             var res =await _unitOfWork.ProfileExpriences.Add(profileExprience);
             return Ok(res);
@@ -93,13 +95,15 @@ namespace ProfileApi.Controllers
             }
             else
             {
-                item.ProfiletId = experinceDto.ProfiletId;
+                item.ProfileId = experinceDto.ProfileId;
                 item.StartDate = experinceDto.StartDate;
                 item.EndDate = experinceDto.EndDate;
                 item.CompanyName = experinceDto.CompanyName;
                 item.Branch = experinceDto.Branch;
                 item.Title = experinceDto.Title;
                 item.Description = experinceDto.Description;
+                item.Skill = experinceDto.Skill;
+                item.Current = experinceDto.Current;
                 await _unitOfWork.ProfileExpriences.update(item);
                 return Ok(item);
 

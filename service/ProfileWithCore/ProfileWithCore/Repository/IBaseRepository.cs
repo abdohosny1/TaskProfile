@@ -10,6 +10,7 @@ namespace ProfileWithCore.Repository
     public interface IBaseRepository<T> where T : class
     {
         Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetByUserID(int id);
         Task<IEnumerable<T>> GellAll(params Expression<Func<T, object>>[] includeProperty);
 
         Task<T> Add(T entity);
