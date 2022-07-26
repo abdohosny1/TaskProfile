@@ -34,7 +34,9 @@ namespace ProfileApi.Controllers
                 Description=i.Description,
                 EndDate=i.EndDate,
                 ProfileId = i.ProfileId,
-                StartDate=i.StartDate
+                StartDate=i.StartDate,
+                Id=i.Id
+                
                
             });
             return Ok(items);

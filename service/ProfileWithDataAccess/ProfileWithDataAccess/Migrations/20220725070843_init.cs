@@ -70,8 +70,9 @@ namespace ProfileWithDataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     StartDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EndDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfiletId = table.Column<int>(type: "int", nullable: false),
-                    ProfileId = table.Column<int>(type: "int", nullable: true)
+                    Current = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    Skill = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    ProfileId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,7 +82,7 @@ namespace ProfileWithDataAccess.Migrations
                         column: x => x.ProfileId,
                         principalTable: "profiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

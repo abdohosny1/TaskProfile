@@ -85,7 +85,6 @@ body {
     width: 80px;
     height: 120px;
     /* UI Properties */
-    background: transparent url('img/profile picture.png') 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 4px 4px 0px 0px;
     opacity: 1;
@@ -112,7 +111,6 @@ body {
     width: 13px;
     height: 15px;
     /* UI Properties */
-    background: transparent url('img/icon- edit.png') 0% 0% no-repeat padding-box;
     border: 1px solid #00000000;
     opacity: 1;
 }
@@ -216,6 +214,5 @@ body {
     width: 40px;
     height: 40px;
     /* UI Properties */
-    background: transparent url('img/icon-workexperience.png') 0% 0% no-repeat padding-box;
     opacity: 1;
 }
