@@ -1,5 +1,5 @@
 ﻿
-<div ng-app="myApp" ng-controller="myCtrl" data-ng-init="init()">
+<div  ng-controller="myCtrl" data-ng-init="init()">
     <div>
         <img src='~/img/cover page photo.png' class="style-coverImage" />
         <div>
@@ -23,6 +23,7 @@
             <h1 class="workexpericence-style">Work Expercience</h1>
             <button class="edit-work-style"
                     ng-click="hideUpdate()"
+                   
                     data-toggle="modal" data-target="#myModal">
                 <i class="fa-solid fa-plus"></i>
             </button>
@@ -92,7 +93,6 @@
                                         {{titledata}}
                                     </li>
 
-
                                 </ul>
                                 <span ng-show="myForm.$submitted">
                                     <label class="text-danger" ng-show="myForm.Title.$error.required">
@@ -100,8 +100,8 @@
                                     </label>
                                 </span>
                                 @*<span ng-show="myForm.Title.$error.required">
-                Title is required.
-            </span>*@
+                        Title is required.
+                    </span>*@
                             </div>
                             <div class="mb-3">
                                 <label for="txt_Employer" class="form-label">Employer</label>
@@ -111,12 +111,10 @@
                                        placeholder="Ex.Hits" class="form-control" id="txt_Employer">
                                 <ul class="list-group" ng-model="hidecompany" ng-hide="hidecompany">
                                     <li class="list-group-item"
-                                        ng-repeat="titledata in filterCompany"
-                                        ng-click="fillTextBoxCompany(titledata)">
-                                        {{titledata}}
+                                        ng-repeat="titleCompany in filterCompany"
+                                        ng-click="fillTextBoxCompany(titleCompany)">
+                                        {{titleCompany}}
                                     </li>
-
-
                                 </ul>
                                 <span ng-show="myForm.$submitted">
                                     <label class="text-danger" ng-show="myForm.CompanyName.$error.required">
@@ -141,10 +139,12 @@
                             </div>
                             <div class="d-flex justify-content-between mx-1 px-1">
                                 <select id="disabledSelect" ng-model="exp.startMonth"
-                                        class="form-control" selected  >
+                                        class="form-control" selected>
                                     <option value="">Month</option>
-                                    <option   ng-repeat="x in nameMonthstart"
-                                            ng-value="{{$index}}">{{x}}</option>
+                                    <option ng-repeat="x in nameMonthstart"
+                                            ng-value="{{$index}}">
+                                        {{x}}
+                                    </option>
 
                                 </select>
 
@@ -152,21 +152,29 @@
                                 <select id="disabledSelect" ng-model="exp.startYear"
                                         class="form-control">
                                     <option value="">Year</option>
-                                    <option  ng-repeat="x in years"  
-                                            ng-selected="{{ x == true }}" >{{x}}</option>
+                                    <option ng-repeat="x in years"
+                                            ng-value="{{$index}}">
+                                        {{x}}
+                                    </option>
 
                                 </select>
                                 <select id="disabledSelect" ng-model="exp.endMonth"
                                         class="form-control">
                                     <option value="">Month</option>
-                                    <option ng-repeat="x in nameMonthstart">{{x}}</option>
+                                    <option ng-repeat="x in nameMonthstart"
+                                            ng-value="{{$index}}">
+                                        {{x}}
+                                    </option>
 
                                 </select>
 
                                 <select id="disabledSelect" ng-model="exp.endYear"
                                         class="form-control">
                                     <option value="">Year</option>
-                                    <option ng-repeat="x in years">{{x}}</option>
+                                    <option ng-repeat="x in years"
+                                            ng-value="{{$index}}">
+                                        {{x}}
+                                    </option>
 
                                 </select>
 

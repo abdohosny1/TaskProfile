@@ -4,9 +4,9 @@ var app = angular.module('myApp', []);
 
 app.controller('myCtrl', function ($scope, $http) {
 
-    $scope.alz = "abdo"
     $scope.listTitle = [];
     $scope.listcompany = [];
+
     $scope.nameMonthstart = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     console.log($scope.nameMonthstart);
     //get years
@@ -17,6 +17,8 @@ app.controller('myCtrl', function ($scope, $http) {
         range.push(year - i);
     }
     $scope.years = range;
+    console.log($scope.years);
+
 
     var getTitle = function () {
         $http({
@@ -46,7 +48,7 @@ app.controller('myCtrl', function ($scope, $http) {
                 $scope.listcompany.push(title.name);
 
             });
-            console.log("data =" + $scope.listTitle);
+            console.log("data =" + $scope.listcompany);
 
 
         }, function myError(response) {
@@ -58,13 +60,10 @@ app.controller('myCtrl', function ($scope, $http) {
 
     $scope.complete = function (string) {
         var output = [];
-        angular.forEach($scope.listTitle, function (title) {
-            if (title === "") {
-                if (title.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
-                    output.push(title);
+        angular.forEach($scope.listTitle, function (titlee) {
+                if (titlee.toLowerCase().indexOf(string.toLowerCase()) >= 0) {
+                    output.push(titlee);
                 }
-            }
-         
         });
         $scope.filterTitle = output;
     }
@@ -111,6 +110,8 @@ app.controller('myCtrl', function ($scope, $http) {
 
         $('#updatesumbit').hide();
         $('#addsumbit').show();
+        emptyForm()
+
     }
   
     $scope.deleteFunction = function (id) {
@@ -160,10 +161,35 @@ app.controller('myCtrl', function ($scope, $http) {
         $scope.exp.Description = item.description
         $scope.exp.Skill = item.skill
         $scope.exp.Current = item.current
+
         var date = new Date(item.startDate);
-        $scope.exp.startMonth = "3"
-        $scope.exp.startYear = (date.getFullYear())
-        console.log(date.getFullYear())
+        var dateend = new Date(item.endDate);
+
+
+        yearstart = 0;
+        lengthYears = $scope.years.length;
+        for (var i = 0; i <= lengthYears; i++) {
+            if ($scope.years[i] === date.getFullYear()) {
+                yearstart=i
+            }
+        }
+
+        yearend = 0;
+        for (var i = 0; i <= lengthYears; i++) {
+            if ($scope.years[i] === dateend.getFullYear()) {
+                yearend = i
+            }
+        }
+
+        $scope.exp.startMonth = (date.getMonth())
+        $scope.exp.endMonth = (dateend.getMonth())
+
+        $scope.exp.startYear = yearstart
+        $scope.exp.endYear = yearend
+
+        console.log(dateend.getMonth()+1)
+        console.log(dateend.getFullYear())
+        console.log(yearstart)
 
 
 
@@ -217,12 +243,22 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.getTime = function getMonthFromString(mon, year) {
         return new Date(Date.parse(mon + " 1 " + year)).getMonth() + 1
     }
-  
+
+   var emptyForm = function () {
+        $scope.exp.Title = "";
+        $scope.exp.CompanyName = "";
+        $scope.exp.Branch = "";
+        $scope.exp.Description = "";
+        $scope.exp.Skill = false
+        $scope.exp.Current = false
+       $scope.exp.startMonth = ""
+       $scope.exp.startYear = ""
+       $scope.exp.endMonth = ""
+       $scope.exp.endYear = -""
+    }
 
     $scope.AddSumbit = function (exp) {
-        //console.log(exp);
-        //console.log(exp.startMonth);
-        //console.log(exp.startYear);
+      
 
         $scope.GetStartDate = $scope.getTime(exp.startMonth, exp.startYear) + "/" + "1" +"/"+ exp.startYear
         $scope.GetendDate = $scope.getTime(exp.endMonth, exp.startYear) + "/" + "1" + "/" + exp.endYear
@@ -232,12 +268,7 @@ app.controller('myCtrl', function ($scope, $http) {
         $scope.newDateStart = new Date($scope.GetStartDate);
         $scope.newDateend = new Date($scope.GetendDate);
 
-        //$scope.day = $scope.GetStartDate.split('/', 1);
-        //$scope.year = $scope.GetStartDate.split('/', 2);
-       // const date = new Date(+year, +month - 1, +day);
-        //console.log($scope.newDate);
-        //console.log($scope.day);
-        //console.log($scope.year);
+   
 
 
         $scope.sendObj = {
@@ -263,12 +294,8 @@ app.controller('myCtrl', function ($scope, $http) {
                 }).then(function mySuccess(response) {
                 init();
                 $('#myModal').modal('hide');
-                $scope.exp.Title = "";
-                $scope.exp.CompanyName = "";
-                $scope.exp.Branch = "";
-                $scope.exp.Description = "";
-                $scope.exp.Skill = false
-                $scope.exp.Current = false
+                    emptyForm()
+
 
               }, function myError(response) {
                 $scope.myWelcome = response.statusText;

@@ -1,0 +1,82 @@
+﻿
+@*@model RegisterVM;*@
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/css/Login.css" />
+
+<div class="container mt-5"  ng-controller="myregister">
+    <div class="row">
+        <div class="col-md-5 d-flex align-items-center">
+            <p>
+                <h1>Sign up for a new account</h1>
+            </p>
+        </div>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry </b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="col-md-6 offset-md-1">
+            <form name="myForm" novalidate ng-submit="register()" class="mt-4 mt-md-0">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label>First Name </label>
+                    <input type="text" class="form-control" ng-model="user.firstName"
+                           name="firstName" placeholder="Enter First Name"
+                           ng-required="true" />
+                    <span ng-show="myForm.$submitted">
+                        <label class="text-danger" ng-show="myForm.firstName.$error.required">
+                            First Name  is required !
+                        </label>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label>Last Name </label>
+                    <input type="text" class="form-control" ng-model="user.lastName"
+                           name="lastName" placeholder="Enter Last Name"
+                           ng-required="true" />
+                    <span ng-show="myForm.$submitted">
+                        <label class="text-danger" ng-show="myForm.lastName.$error.required">
+                            Last Name  is required !
+                        </label>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label>Email </label>
+                    <input type="email" class="form-control" ng-model="user.email"
+                           name="email" placeholder="Enter Email"
+                           ng-required="true" />
+                    <span ng-show="myForm.$submitted">
+                        <label class="text-danger" ng-show="myForm.email.$error.required">
+                            Email  is required !
+                        </label>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label>Password </label>
+                    <input type="password" class="form-control" ng-model="user.password"
+                           name="password" placeholder="Enter Password"
+                           ng-required="true" />
+                    <span ng-show="myForm.$submitted">
+                        <label class="text-danger" ng-show="myForm.password.$error.required">
+                            password  is required !
+                        </label>
+                    </span>
+                </div>
+
+
+                <div class="form-group mt-4 d-flex">
+                    <input class="btn btn-success b1 mx-2 float-right" type="submit" value=Sign up />
+                    <a class="btn b2 btn-danger  float-left" asp-controller="Home" asp-action="Index">Cancle </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProfileWithCore.ConfigrationType;
 using ProfileWithCore.Model;
+using ProfileWithCore.Model.identity;
 using ProfileWithDataAccess.ConfigrationType;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ProfileWithDataAccess
 {
- public   class ApplicationDbContext :DbContext
+ public   class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
