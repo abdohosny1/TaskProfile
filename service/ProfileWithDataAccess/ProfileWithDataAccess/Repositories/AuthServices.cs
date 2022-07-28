@@ -69,6 +69,7 @@ namespace ProfileWithDataAccess.Repositories
             authModel.Email = user.Email;
             authModel.Username = user.UserName;
             authModel.ExpiresOn = jwtSecurityToken.ValidTo;
+            authModel.UserId = user.Id;
             authModel.Roles = rolesList.ToList();
 
             return authModel;

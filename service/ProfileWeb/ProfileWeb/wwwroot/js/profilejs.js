@@ -6,6 +6,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
     $scope.listTitle = [];
     $scope.listcompany = [];
+    $scope.myWelcome = "";
 
     $scope.nameMonthstart = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     console.log($scope.nameMonthstart);
@@ -91,20 +92,28 @@ app.controller('myCtrl', function ($scope, $http) {
     }
 
 
-
     var init = function () {
+        var userId = localStorage.getItem("userId");
+        console.log("user id" + userId)
+        if (!userId == "") {
+            $http({
+                method: "GET",
+                url: "https://localhost:44391/api/ProfileExper/" + userId
+            }).then(function mySuccess(response) {
+                $scope.myWelcome = response.data;
+                console.log("data =" + response);
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+        } else {
+            /*window.location.href="/Account/Login"*/
+            $scope.myWelcome = ""
+            console.log("myWelcome" + $scope.myWelcome)
 
+        }
 
-        $http({
-            method: "GET",
-            url: "https://localhost:44391/api/ProfileExper"
-        }).then(function mySuccess(response) {
-            $scope.myWelcome = response.data;
-            console.log("data =" + response);
-        }, function myError(response) {
-            $scope.myWelcome = response.statusText;
-        });
     }
+   
     init();
     $scope.hideUpdate = function () {
 
@@ -210,7 +219,7 @@ app.controller('myCtrl', function ($scope, $http) {
 
         $scope.newDateStart = new Date($scope.GetStartDate);
         $scope.newDateend = new Date($scope.GetendDate);
-
+        var userId= localStorage.getItem("userId");
         $scope.sendObj = {
             profileId: 1,
             branch: exp.Branch,
@@ -220,7 +229,8 @@ app.controller('myCtrl', function ($scope, $http) {
             skill: exp.Skill,
             current: exp.Current,
             startDate: $scope.newDateStart,
-            endDate: $scope.newDateend
+            endDate: $scope.newDateend,
+            UserId: userId
         }
         $http({
             method: "put",
@@ -262,7 +272,8 @@ app.controller('myCtrl', function ($scope, $http) {
 
         $scope.GetStartDate = $scope.getTime(exp.startMonth, exp.startYear) + "/" + "1" +"/"+ exp.startYear
         $scope.GetendDate = $scope.getTime(exp.endMonth, exp.startYear) + "/" + "1" + "/" + exp.endYear
-        //console.log($scope.GetStartDate);
+        console.log($scope.GetStartDate);
+        var userId = localStorage.getItem("userId");
 
       
         $scope.newDateStart = new Date($scope.GetStartDate);
@@ -280,7 +291,8 @@ app.controller('myCtrl', function ($scope, $http) {
             skill: exp.Skill,
             current: exp.Current,
             startDate: $scope.newDateStart,
-            endDate: $scope.newDateend
+            endDate: $scope.newDateend,
+            UserId: userId
         }
         console.log($scope.sendObj);
       

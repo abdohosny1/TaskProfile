@@ -28,12 +28,12 @@
 //});
 
 
-$(document).ready(function () {
-    //$('#progress').show();
+//$(document).ready(function () {
+//    //$('#progress').show();
 
-    //getAlldata();
-    //getAllProfileExperience();
-});
+//    //getAlldata();
+//    //getAllProfileExperience();
+//});
 
 //function getAllProfileExperience() {
 

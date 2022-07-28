@@ -16,6 +16,8 @@ namespace ProfileWithCore
         IBaseRepository<companies> companiess { get; }
         IBaseRepository<Titiles> Titiless { get; }
 
+        IExpericence expericence { get; }
+
         int Complete();
 
     }

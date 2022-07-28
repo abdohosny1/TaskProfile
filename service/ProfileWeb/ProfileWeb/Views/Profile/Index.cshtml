@@ -1,5 +1,5 @@
 ﻿
-<div  ng-controller="myCtrl" data-ng-init="init()">
+<div  ng-controller="myCtrl"  >
     <div>
         <img src='~/img/cover page photo.png' class="style-coverImage" />
         <div>
@@ -8,8 +8,13 @@
             <span class="name-style"> Abdelaliem Hosny</span>
 
             <img src='~/img/icon- edit.png' class="edit-style" />
-            <span class="titles-style">{{myWelcome[0].title}}</span>
 
+            <div ng-if="myWelcome != ''">
+                <span  class="titles-style">{{myWelcome[0].title}}</span>
+            </div>
+            <div ng-if="myWelcome ===''  ">
+                <span class="titles-style">not found</span>
+            </div>
         </div>
 
        <div class="about-style">
@@ -17,59 +22,57 @@
         </div>
     </div>
 
-    <div>
-        <h1 class="background-style">Background</h1>
-        <div class="row" style="max-width: 700px;">
-            <h1 class="workexpericence-style">Work Expercience</h1>
+    <div class="card mb-3  mx-1" style="max-width: 750px;">
+        <h1 class="background-style ">Background</h1>
+        <div class="my-2 mx-2" style="max-width: 700px;">
+            <span class="workexpericence-style">Work Expercience</span>
             <button class="edit-work-style"
                     ng-click="hideUpdate()"
-                   
                     data-toggle="modal" data-target="#myModal">
                 <i class="fa-solid fa-plus"></i>
             </button>
         </div>
 
-        <div ng-repeat="item in myWelcome">
-
-
-
-            <div class="card mb-3 " style="max-width: 700px;">
-                <div class="row g-0 my-0 py-0">
-                    <div class="col-md-1 p-3">
-                        <img src="~/img/icon-workexperience.png" />
-                    </div>
-                    <div class="col-md-11">
-                        <div class="card-body my-0 py-0">
-                            <div class="row d-flex my-0 py-0 ">
-                                <span class="p-2 flex-grow-1 card-title titel-exper-style">{{item.title}}</span>
-                                <div class="p-2 ">
-                                    <button class="edit-work-style" ng-click="UpdateFunction(item)" data-toggle="modal" data-target="#myModal"> <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button class="edit-work-style" ng-click="deleteFunction(item.id)"><i class="fa-solid fa-trash-can"></i></button>
-                                </div>
-                            </div>
-                            <div class="my-0 py-0">
-                                <p class="card-text  ">f( {{item.startDate |date :  "MMM"}} {{item.startDate |date :  "yyyy"}} -  {{item.endDate |date :  "MMM"}} {{item.endDate |date :  "yyyy"}} ) </p>
-                                <p class="card-text company-exper-style">{{item.companyName}}</p>
-                                <p class=" card-text des-exper-style"> {{item.description}} </p>
-                            </div>
-                           
+            <div ng-repeat="item in myWelcome">
+                <div class="card mb-3 " style="max-width: 700px;">
+                    <div class="row g-0 my-0 py-0">
+                        <div class="col-md-1 p-3">
+                            <img src="~/img/icon-workexperience.png" />
                         </div>
+                        <div class="col-md-11">
+                            <div class="card-body my-0 py-0">
+                                <div class="row d-flex my-0 py-0 ">
+                                    <span class="p-2 flex-grow-1 card-title titel-exper-style">{{item.title}}</span>
+                                    <div class="p-2 ">
+                                        <button class="edit-work-style" ng-click="UpdateFunction(item)" data-toggle="modal" data-target="#myModal"> <i class="fa-solid fa-pen-to-square"></i></button>
+                                        <button class="edit-work-style" ng-click="deleteFunction(item.id)"><i class="fa-solid fa-trash-can"></i></button>
+                                    </div>
+                                </div>
+                                <div class="my-0 py-0">
+                                    <p class="card-text  ">
+                                        f( {{item.startDate |date :  "MMM"}} {{item.startDate |date :  "yyyy"}} -  {{item.endDate |date :  "MMM"}} {{item.endDate |date :  "yyyy"}} )
+                                    </p>
+                                    <p class="card-text company-exper-style">{{item.companyName}}</p>
+                                    <p class=" card-text des-exper-style"> {{item.description}} </p>
+                                </div>
 
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 
 
 
-       
 
 
 
 
-    <div id="myModal" class="modal fade" role="dialog">
+
+        <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
 
                 <!-- Modal content-->
@@ -100,8 +103,8 @@
                                     </label>
                                 </span>
                                 @*<span ng-show="myForm.Title.$error.required">
-                        Title is required.
-                    </span>*@
+                                    Title is required.
+                                </span>*@
                             </div>
                             <div class="mb-3">
                                 <label for="txt_Employer" class="form-label">Employer</label>
@@ -228,7 +231,7 @@
 
 
 
-  </div>
+    </div>
  </div>
 
 

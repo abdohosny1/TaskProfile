@@ -23,6 +23,9 @@ namespace ProfileWithDataAccess
 
         public IBaseRepository<Titiles> Titiless { get; private set; }
 
+        public IExpericence expericence { get; private set; }
+
+
         public UnitOfWork(ApplicationDbContext context)
         {
 
@@ -32,6 +35,7 @@ namespace ProfileWithDataAccess
             Citiess = new BaseRepository<Cities>(_context);
             companiess = new BaseRepository<companies>(_context);
             Titiless = new BaseRepository<Titiles>(_context);
+            expericence = new Expericence(_context);
         }
         public int Complete()
         {

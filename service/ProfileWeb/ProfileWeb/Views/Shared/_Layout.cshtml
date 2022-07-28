@@ -12,7 +12,7 @@
           crossorigin="anonymous"
           referrerpolicy="no-referrer" />
 </head>
-<body  >
+<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -32,13 +32,14 @@
                             @*<a class="nav-link text-dark" href="/#/expericence">Profile</a>*@
                         </li>
                     </ul>
-                    <partial name="IdentityView.cshtml" />
+                    <div id="showBu"></div>
+                    @*<partial name="IdentityView.cshtml" />*@
                 </div>
             </div>
         </nav>
     </header>
     @*<div class="container" ng-view  >*@
-    <div class="container" ng-view  >
+    <div class="container" >
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -54,13 +55,60 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="~/js/angular-route.js"></script>
-    <script src="~/js/angular-ui.js"></script>
+    @*<script src="~/js/angular-route.js"></script>
+    <script src="~/js/angular-ui.js"></script>*@
     <script src="~/js/profilejs.js"></script>
-    @*<script src="~/js/account.js"></script>
-    <script src="~/js/routing.js"></script>*@
+    @* <script src="~/js/account.js"></script>
+        <script src="~/js/routing.js"></script>*@
     @*<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>*@
 
+    <script>
+        $(document).ready(function () {
+            user = localStorage.getItem("ActiveUser");
+            var user2;
+            if (!user == "") {
+                user2 = JSON.parse(user);
+
+            }
+            token = localStorage.getItem("token");
+            if (token == "" && user == "") {
+                $("#showBu").append(`<a class="btn btn-outline-info b1 my-2 my-sm-0"
+                   id="gotoLogin"
+               asp-controller="Account" asp-action="Login">
+            <i class="bi bi-box-arrow-in-right" ></i> Login
+        </a>
+        <span style="padding: 5px;"></span>
+
+        <a class="btn b2 btn-outline-primary my-2 my-sm-0" id="gotoRegister"  asp-controller="Account" asp-action="Register">
+            <i class="bi bi-person-plus"></i> Register
+        </a>`);
+            } else {
+                $("#showBu").append(`  <i class="bi bi-person-badge"></i> Hello ${user2.username}
+                <button id="gotoLogOut" class="btn btn-danger b2 my-2 my-sm-0">
+                <i class="bi bi-box-arrow-in-right"></i> LogOut
+            </button>`)
+            }
+
+            //console.log(user.email)
+            console.log(user)
+            //console.log(token)
+
+
+            $("#gotoRegister").click(function () {
+                window.location.href = "/Account/Register"
+            })
+            $("#gotoLogin").click(function () {
+                window.location.href = "/Account/Login"
+            })
+            $("#gotoLogOut").click(function () {
+                localStorage.setItem("ActiveUser", "");
+                localStorage.setItem("token", "");
+                localStorage.setItem("userId", "");
+                window.location.href = "/Home/Index"
+            })
+        })
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

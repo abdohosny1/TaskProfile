@@ -20,12 +20,12 @@ namespace ProfileApi.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet()]
+        [HttpGet("{UserId}")]
         [ProducesResponseType(typeof(ProfileExprience), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ProfileExprience>> GetAllExper()
+        public async Task<ActionResult<ProfileExprience>> GetAllExper(string UserId)
         {
 
-            var res = await _unitOfWork.ProfileExpriences.GetAll();
+            var res = await _unitOfWork.expericence.GetByIdProfile(UserId);
             var items = res.Select(i => new ProfileExperinceDto
             {
                 Title=i.Title,
@@ -60,9 +60,10 @@ namespace ProfileApi.Controllers
                 ProfileId = exprience.ProfileId,
                 Current=exprience.Current,
                 Skill=exprience.Skill,
+                UserID=exprience.UserID
                 
             };
-            var res =await _unitOfWork.ProfileExpriences.Add(profileExprience);
+            var res =await _unitOfWork.expericence.Add(profileExprience);
             return Ok(res);
         }
 
@@ -72,7 +73,7 @@ namespace ProfileApi.Controllers
         public async Task<ActionResult> DeleteProfile(int id)
         {
             if (id == null) return NotFound();
-            var item = await _unitOfWork.ProfileExpriences.GetById(id);
+            var item = await _unitOfWork.expericence.GetById(id);
 
             if (item == null)
             {
@@ -80,7 +81,7 @@ namespace ProfileApi.Controllers
             }
             else
             {
-                await _unitOfWork.ProfileExpriences.DeleteAsync(id);
+                await _unitOfWork.expericence.DeleteAsync(id);
                 return Ok();
             }
         }
@@ -90,7 +91,7 @@ namespace ProfileApi.Controllers
         public async Task<IActionResult> update(int id, [FromBody] ProfileExperinceDto experinceDto)
         {
             if (id == null) return NotFound();
-            var item = await _unitOfWork.ProfileExpriences.GetById(id);
+            var item = await _unitOfWork.expericence.GetById(id);
 
             if (item == null)
             {
@@ -107,7 +108,7 @@ namespace ProfileApi.Controllers
                 item.Description = experinceDto.Description;
                 item.Skill = experinceDto.Skill;
                 item.Current = experinceDto.Current;
-                await _unitOfWork.ProfileExpriences.update(item);
+                await _unitOfWork.expericence.update(item);
                 return Ok(item);
 
             }

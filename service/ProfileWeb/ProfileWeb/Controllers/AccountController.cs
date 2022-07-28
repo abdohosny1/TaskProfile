@@ -34,9 +34,14 @@ namespace ProfileWeb.Controllers
         public IActionResult Register()
         {
             return View();
-            //var response = new RegisterVM();
-            //return View(response);
+
         }
+        //[HttpPost]
+        //public IActionResult Register(RegisterVM registerVM)
+        //{
+        //    return View(registerVM);
+          //             return RedirectToAction("Index", "Home");
+        //}
 
         //[HttpPost]
         //public async Task<IActionResult> Register(RegisterVM registerVM)
@@ -67,7 +72,7 @@ namespace ProfileWeb.Controllers
         //    var result = await _signInManager.PasswordSignInAsync(newUser, registerVM.Password, false, false);
         //    HttpContext.Session.SetString("USERID", $"{newUser.Id}");
 
-          
+
         //    return RedirectToAction("Index", "Home");
 
 
